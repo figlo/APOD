@@ -12,7 +12,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.fantasyland"
+        applicationId "com.example.apod"
         minSdk 23
         targetSdk 32
         versionCode 1
@@ -81,6 +81,11 @@ dependencies {
     ksp "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
     // Window
     implementation 'androidx.window:window:1.0.0'
