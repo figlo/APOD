@@ -92,6 +92,9 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:2.2.0"
 
+    // Window
+    implementation "androidx.window:window:1.0.0"
+
     // Material
     implementation "com.google.android.material:material:1.6.1"
 

@@ -10,10 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.apod.databinding.FragmentApodGalleryBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ApodGalleryFragment : Fragment() {
     private var _binding: FragmentApodGalleryBinding? = null
@@ -37,10 +37,19 @@ class ApodGalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // calculating item size (width and height)
+        val bounds = WindowMetricsCalculator
+            .getOrCreate()
+            .computeCurrentWindowMetrics(requireActivity())
+            .bounds
+        val displayWidth = bounds.width()
+        val itemWidth: Int = displayWidth / 3
+        Timber.d("Item width = $itemWidth")
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.galleryItems.collect() { items ->
-                    binding.apodGrid.adapter = ApodListAdapter(items)
+                    binding.apodGrid.adapter = ApodListAdapter(itemWidth, items)
                 }
             }
         }

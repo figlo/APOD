@@ -8,14 +8,18 @@ import com.example.apod.api.GalleryItem
 import com.example.apod.databinding.ListItemGalleryBinding
 
 class ApodViewHolder(
-    private val binding: ListItemGalleryBinding
+    private val binding: ListItemGalleryBinding,
+    private val itemWidth: Int
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryItem: GalleryItem) {
+        binding.itemImageView.layoutParams.width = itemWidth
+        binding.itemImageView.layoutParams.height = itemWidth
         binding.itemImageView.load(galleryItem.url)
     }
 }
 
 class ApodListAdapter(
+    private val itemWidth: Int,
     private val galleryItems: List<GalleryItem>
 ): RecyclerView.Adapter<ApodViewHolder>() {
     override fun onCreateViewHolder(
@@ -24,7 +28,7 @@ class ApodListAdapter(
     ): ApodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemGalleryBinding.inflate(inflater, parent, false)
-        return ApodViewHolder(binding)
+        return ApodViewHolder(binding, itemWidth)
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
