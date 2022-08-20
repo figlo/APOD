@@ -48,7 +48,7 @@ class ApodGalleryFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.galleryItems.collect() { items ->
+                viewModel.galleryItems.collect { items ->
                     binding.apodGrid.adapter = ApodListAdapter(itemWidth, items)
                 }
             }

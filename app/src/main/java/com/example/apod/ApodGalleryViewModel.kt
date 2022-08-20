@@ -21,8 +21,8 @@ class ApodGalleryViewModel : ViewModel() {
             try {
                 _galleryItems.value = apodRepository
                     .fetchApods()
-//                    .filter { it.mediaType == "image"}
-//                    .reversed()
+                    .filter { it.mediaType == "image"}
+                    .reversed()
             } catch (ex: Exception) {
                 Timber.e("Failed to fetch gallery items", ex)
             }
