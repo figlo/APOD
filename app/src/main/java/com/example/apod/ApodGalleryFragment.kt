@@ -12,8 +12,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.window.layout.WindowMetricsCalculator
 import com.example.apod.databinding.FragmentApodGalleryBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ApodGalleryFragment : Fragment() {
     private var _binding: FragmentApodGalleryBinding? = null
     private val binding

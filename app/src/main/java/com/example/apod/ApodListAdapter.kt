@@ -16,7 +16,7 @@ class ApodViewHolder(
             itemImageView.layoutParams.width = itemWidth
             itemImageView.layoutParams.height = itemWidth
             itemImageView.load(galleryItem.url)
-            itemTextView.text = galleryItem.title
+            itemTextView.text = ("${galleryItem.title} (${galleryItem.date})")
         }
     }
 }
