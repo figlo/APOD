@@ -12,9 +12,12 @@ class ApodViewHolder(
     private val itemWidth: Int,
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryItem: GalleryItem) {
-        binding.itemImageView.layoutParams.width = itemWidth
-        binding.itemImageView.layoutParams.height = itemWidth
-        binding.itemImageView.load(galleryItem.url)
+        with(binding) {
+            itemImageView.layoutParams.width = itemWidth
+            itemImageView.layoutParams.height = itemWidth
+            itemImageView.load(galleryItem.url)
+            itemTextView.text = galleryItem.title
+        }
     }
 }
 
