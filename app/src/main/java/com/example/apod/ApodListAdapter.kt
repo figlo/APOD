@@ -9,8 +9,8 @@ import com.example.apod.databinding.ListItemGalleryBinding
 
 class ApodViewHolder(
     private val binding: ListItemGalleryBinding,
-    private val itemWidth: Int
-): RecyclerView.ViewHolder(binding.root) {
+    private val itemWidth: Int,
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryItem: GalleryItem) {
         binding.itemImageView.layoutParams.width = itemWidth
         binding.itemImageView.layoutParams.height = itemWidth
@@ -19,9 +19,9 @@ class ApodViewHolder(
 }
 
 class ApodListAdapter(
+    private val galleryItems: List<GalleryItem>,
     private val itemWidth: Int,
-    private val galleryItems: List<GalleryItem>
-): RecyclerView.Adapter<ApodViewHolder>() {
+) : RecyclerView.Adapter<ApodViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
