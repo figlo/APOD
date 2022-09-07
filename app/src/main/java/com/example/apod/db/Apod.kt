@@ -7,17 +7,20 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "apods")
 data class Apod(
     @PrimaryKey(autoGenerate = true)
-    var apodId: Long = 0L,
+    val apodId: Long = 0L,
 
     @ColumnInfo(name = "title")
-    var title: String = "",
+    val title: String = "",
 
     @ColumnInfo(name = "date")
-    var date: String = "",
+    val date: String = "",
 
     @ColumnInfo(name = "explanation")
-    var explanation: String = "",
+    val explanation: String = "",
 
     @ColumnInfo(name = "url")
-    var url: String = "",
+    val url: String = "",
+
+    @ColumnInfo(name = "media_type")
+    val mediaType: String = "",
 )
