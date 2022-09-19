@@ -5,11 +5,8 @@ import com.example.apod.api.toDbModel
 import com.example.apod.db.ApodDao
 import com.example.apod.db.ApodDbModel
 import com.example.apod.db.toApiModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
@@ -30,12 +27,10 @@ class ApodRepository(private val dao: ApodDao) {
 
     suspend fun refreshApods() {
         try {
-            withContext(Dispatchers.IO) {
-                val apiApods = async { apodApi.getApiApods() }
-                val dbApods = async { dao.getDbApodsFlow().first() }
-                val newApiApods = apiApods.await() - dbApods.await().toApiModel().toSet()
-                dao.insertAll(newApiApods.toDbModel())
-            }
+            val apiApods = apodApi.getApiApods()
+            val dbApods = dao.getDbApodsFlow().first()
+            val newApiApods = apiApods - dbApods.toApiModel().toSet()
+            dao.insertAll(newApiApods.toDbModel())
         } catch (ex: Exception) {
             Timber.e("Failed to fetch gallery items", ex)
         }
