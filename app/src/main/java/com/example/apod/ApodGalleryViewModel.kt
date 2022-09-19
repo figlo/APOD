@@ -2,29 +2,30 @@ package com.example.apod
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.apod.api.GalleryItem
+import com.example.apod.db.ApodDao
+import com.example.apod.db.toDomainModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import javax.inject.Inject
 
-class ApodGalleryViewModel : ViewModel() {
-    private val apodRepository = ApodRepository()
+@HiltViewModel
+class ApodGalleryViewModel @Inject constructor(
+    dao: ApodDao,
+) : ViewModel() {
+    private val apodRepository = ApodRepository(dao)
 
-    private val _galleryItems: MutableStateFlow<List<GalleryItem>> = MutableStateFlow(emptyList())
-    val galleryItems: StateFlow<List<GalleryItem>>
-        get() = _galleryItems.asStateFlow()
+    private var _dbApodsFlow: MutableStateFlow<List<ApodDomainModel>> = MutableStateFlow(emptyList())
+    val dbApodsFlow: StateFlow<List<ApodDomainModel>>
+        get() = _dbApodsFlow.asStateFlow()
 
     init {
         viewModelScope.launch {
-            try {
-                _galleryItems.value = apodRepository
-                    .fetchApods()
-                    .filter { it.mediaType == "image"}
-                    .reversed()
-            } catch (ex: Exception) {
-                Timber.e("Failed to fetch gallery items", ex)
+            apodRepository.refreshApods()
+            apodRepository.getDbApodsFlow().collect {
+                _dbApodsFlow.value = it.toDomainModel()
             }
         }
     }

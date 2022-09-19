@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(
-    entities = [Apod::class],
+    entities = [ApodDbModel::class],
     version = 1,
     exportSchema = true,
 )

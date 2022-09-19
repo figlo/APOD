@@ -4,25 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.apod.api.GalleryItem
 import com.example.apod.databinding.ListItemGalleryBinding
 
 class ApodViewHolder(
     private val binding: ListItemGalleryBinding,
     private val itemWidth: Int,
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(galleryItem: GalleryItem) {
+    fun bind(apodDomainModel: ApodDomainModel) {
         with(binding) {
             itemImageView.layoutParams.width = itemWidth
             itemImageView.layoutParams.height = itemWidth
-            itemImageView.load(galleryItem.url)
-            itemTextView.text = ("${galleryItem.title} (${galleryItem.date})")
+            itemImageView.load(apodDomainModel.url)
+            itemTextView.text = ("${apodDomainModel.title} (${apodDomainModel.date})")
         }
     }
 }
 
 class ApodListAdapter(
-    private val galleryItems: List<GalleryItem>,
+    private val apodApiModels: List<ApodDomainModel>,
     private val itemWidth: Int,
 ) : RecyclerView.Adapter<ApodViewHolder>() {
     override fun onCreateViewHolder(
@@ -35,9 +34,9 @@ class ApodListAdapter(
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
-        val item = galleryItems[position]
+        val item = apodApiModels[position]
         holder.bind(item)
     }
 
-    override fun getItemCount() = galleryItems.size
+    override fun getItemCount() = apodApiModels.size
 }
