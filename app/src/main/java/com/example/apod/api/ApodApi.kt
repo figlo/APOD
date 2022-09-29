@@ -7,7 +7,7 @@ private const val API_KEY = "ejIN7M9Yj2pqdvwYLGQlEC2rYaCbhDltzkjQcVj1"
 interface ApodApi {
     @GET(
         "planetary/apod?api_key=$API_KEY" +
-        "&start_date=2022-08-01"
+        "&start_date=2022-09-01"
     )
     suspend fun getApiApods(): List<ApodApiModel>
 }

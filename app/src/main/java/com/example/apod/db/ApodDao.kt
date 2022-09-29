@@ -14,4 +14,7 @@ interface ApodDao {
 
     @Query("SELECT * FROM apods ORDER BY date DESC")
     fun getDbApodsFlow(): Flow<List<ApodDbModel>>
+
+    @Query("SELECT * FROM apods WHERE id=:id")
+    suspend fun getDbApod(id: Long): ApodDbModel?
 }
