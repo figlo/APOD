@@ -9,7 +9,13 @@ import com.example.apod.databinding.ListItemGalleryBinding
 class ApodViewHolder(
     private val binding: ListItemGalleryBinding,
     private val itemWidth: Int,
+    private val onItemClick: (position: Int) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
+    init {
+        itemView.setOnClickListener {
+            onItemClick(absoluteAdapterPosition)
+        }
+    }
     fun bind(apodDomainModel: ApodDomainModel) {
         with(binding) {
             itemImageView.layoutParams.width = itemWidth
@@ -23,6 +29,7 @@ class ApodViewHolder(
 class ApodListAdapter(
     private val apodApiModels: List<ApodDomainModel>,
     private val itemWidth: Int,
+    private val onItemClick: (position: Int) -> Unit,
 ) : RecyclerView.Adapter<ApodViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,7 +37,7 @@ class ApodListAdapter(
     ): ApodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemGalleryBinding.inflate(inflater, parent, false)
-        return ApodViewHolder(binding, itemWidth)
+        return ApodViewHolder(binding, itemWidth, onItemClick)
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
