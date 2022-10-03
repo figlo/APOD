@@ -63,6 +63,6 @@ class ApodGalleryFragment : Fragment() {
     }
 
     private fun onItemClick(position: Int) {
-        Snackbar.make(requireView(), "aaa", Toast.LENGTH_LONG).show()
+        Snackbar.make(requireView(), "aaa", Snackbar.LENGTH_LONG).show()
     }
 }
