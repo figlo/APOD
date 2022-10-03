@@ -25,6 +25,8 @@ class ApodRepository(private val dao: ApodDao) {
 
     fun getDbApodsFlow(): Flow<List<ApodDbModel>> = dao.getDbApodsFlow()
 
+    suspend fun getApod(apodId: Long): ApodDbModel? = dao.getDbApod(apodId)
+
     suspend fun refreshApods() {
         try {
             val apiApods = apodApi.getApiApods()
