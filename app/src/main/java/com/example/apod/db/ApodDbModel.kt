@@ -44,6 +44,7 @@ fun List<ApodDbModel>.toApiModel(): List<ApodApiModel> {
 fun List<ApodDbModel>.toDomainModel(): List<ApodDomainModel> {
     return map {
         ApodDomainModel(
+            id = it.id,
             title = it.title,
             date = it.date,
             explanation = it.explanation,

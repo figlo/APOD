@@ -1,6 +1,7 @@
 package com.example.apod
 
 data class ApodDomainModel(
+    val id: Long,
     val title: String,
     val date: String,
     val explanation: String,

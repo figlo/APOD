@@ -9,19 +9,15 @@ import com.example.apod.databinding.ListItemGalleryBinding
 class ApodViewHolder(
     private val binding: ListItemGalleryBinding,
     private val itemWidth: Int,
-    private val onItemClick: (position: Int) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
-    init {
-        itemView.setOnClickListener {
-            onItemClick(absoluteAdapterPosition)
-        }
-    }
-    fun bind(apodDomainModel: ApodDomainModel) {
+
+    fun bind(apodDomainModel: ApodDomainModel, onItemClicked: (apodId: Long) -> Unit) {
         with(binding) {
             itemImageView.layoutParams.width = itemWidth
             itemImageView.layoutParams.height = itemWidth
             itemImageView.load(apodDomainModel.url)
-            itemTextView.text = ("${apodDomainModel.title} (${apodDomainModel.date})")
+            itemTextView.text = ("${apodDomainModel.title} (${apodDomainModel.date})")      // TODO
+            root.setOnClickListener { onItemClicked(apodDomainModel.id) }
         }
     }
 }
@@ -29,7 +25,7 @@ class ApodViewHolder(
 class ApodListAdapter(
     private val apodApiModels: List<ApodDomainModel>,
     private val itemWidth: Int,
-    private val onItemClick: (position: Int) -> Unit,
+    private val onItemClicked: (apodId: Long) -> Unit,
 ) : RecyclerView.Adapter<ApodViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,12 +33,12 @@ class ApodListAdapter(
     ): ApodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemGalleryBinding.inflate(inflater, parent, false)
-        return ApodViewHolder(binding, itemWidth, onItemClick)
+        return ApodViewHolder(binding, itemWidth)
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
         val item = apodApiModels[position]
-        holder.bind(item)
+        holder.bind(item, onItemClicked)
     }
 
     override fun getItemCount() = apodApiModels.size
