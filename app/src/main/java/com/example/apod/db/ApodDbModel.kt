@@ -53,3 +53,14 @@ fun List<ApodDbModel>.toDomainModel(): List<ApodDomainModel> {
         )
     }
 }
+
+fun ApodDbModel.toDomainModel(): ApodDomainModel {
+    return ApodDomainModel(
+        id = this.id,
+        title = this.title,
+        date = this.date,
+        explanation = this.explanation,
+        url = this.url,
+        mediaType = this.mediaType,
+    )
+}

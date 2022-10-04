@@ -11,8 +11,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import timber.log.Timber
+import javax.inject.Inject
 
-class ApodRepository(private val dao: ApodDao) {
+class ApodRepository @Inject constructor(private val dao: ApodDao) {
     private val apodApi: ApodApi
 
     init {

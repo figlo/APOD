@@ -10,11 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.example.apod.databinding.FragmentApodDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import coil.load
-import timber.log.Timber
 
 @AndroidEntryPoint
 class ApodDetailFragment : Fragment() {
@@ -42,13 +41,10 @@ class ApodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Timber.d("Apod id is: ${args.apodId}")
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.apod.collect { apodDbModel ->
                     apodDbModel?.let {
-                        Timber.d("Apod url is: ${it.url}")
                         binding.apodImage.load(it.url)
                     }
                 }
