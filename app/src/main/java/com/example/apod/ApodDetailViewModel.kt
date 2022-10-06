@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ApodDetailViewModel @Inject constructor(
-    private val apodRepository: ApodRepository,
+    apodRepository: ApodRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     var apodId: Long = savedStateHandle["apodId"]!!        // TODO
