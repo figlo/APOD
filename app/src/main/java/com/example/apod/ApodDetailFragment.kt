@@ -46,6 +46,8 @@ class ApodDetailFragment : Fragment() {
                 viewModel.apod.collect { apodDbModel ->
                     apodDbModel?.let {
                         binding.apodImage.load(it.url)
+                        binding.apodTitle.text = ("${it.title} (${it.date})")
+                        binding.apodExplanation.text = it.explanation
                     }
                 }
             }
