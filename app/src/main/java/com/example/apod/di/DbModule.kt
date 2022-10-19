@@ -2,6 +2,7 @@ package com.example.apod.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.apod.db.ApodDao
 import com.example.apod.db.ApodDb
 import dagger.Module
 import dagger.Provides
@@ -16,7 +17,7 @@ object DbModule {
 
     @Singleton
     @Provides
-    fun provideApodDb(@ApplicationContext appContext: Context) =
+    fun provideApodDb(@ApplicationContext appContext: Context): ApodDb =
         Room.databaseBuilder(
             appContext,
             ApodDb::class.java,
@@ -25,5 +26,5 @@ object DbModule {
 
     @Singleton
     @Provides
-    fun provideApodDao(db: ApodDb) = db.apodDao
+    fun provideApodDao(db: ApodDb): ApodDao = db.apodDao
 }
