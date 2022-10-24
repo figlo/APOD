@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase
     version = 1,
     exportSchema = true,
 )
-
 abstract class ApodDb : RoomDatabase() {
     abstract val apodDao: ApodDao
 }
