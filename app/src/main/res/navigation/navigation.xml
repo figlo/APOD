@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/apodGalleryFragment"
         android:name="com.example.apod.ApodGalleryFragment"
-        android:label="Astronomy Picture Of The Day"
+        android:label="@string/apod_label"
         tools:layout="@layout/fragment_apod_gallery">
         <action
             android:id="@+id/action_apodGalleryFragment_to_apodDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/apodDetailFragment"
         android:name="com.example.apod.ApodDetailFragment"
-        android:label="Astronomy Picture Of The Day"
+        android:label="@string/apod_label"
         tools:layout="@layout/fragment_apod_detail">
         <argument
             android:name="apodId"
