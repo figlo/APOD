@@ -19,6 +19,9 @@ data class ApodDbModel(
     @ColumnInfo(name = "date")
     val date: String = "",
 
+    @ColumnInfo(name = "copyright", defaultValue = "")
+    val copyright: String = "",
+
     @ColumnInfo(name = "explanation")
     val explanation: String = "",
 
@@ -34,6 +37,7 @@ fun List<ApodDbModel>.toApiModel(): List<ApodApiModel> {
         ApodApiModel(
             title = it.title,
             date = it.date,
+            copyright = if(it.copyright == "") null else it.copyright,
             explanation = it.explanation,
             url = it.url,
             mediaType = it.mediaType,
@@ -47,6 +51,7 @@ fun List<ApodDbModel>.toDomainModel(): List<ApodDomainModel> {
             id = it.id,
             title = it.title,
             date = it.date,
+            copyright = it.copyright,
             explanation = it.explanation,
             url = it.url,
             mediaType = it.mediaType,
@@ -56,11 +61,12 @@ fun List<ApodDbModel>.toDomainModel(): List<ApodDomainModel> {
 
 fun ApodDbModel.toDomainModel(): ApodDomainModel {
     return ApodDomainModel(
-        id = this.id,
-        title = this.title,
-        date = this.date,
-        explanation = this.explanation,
-        url = this.url,
-        mediaType = this.mediaType,
+        id = id,
+        title = title,
+        date = date,
+        copyright = copyright,
+        explanation = explanation,
+        url = url,
+        mediaType = mediaType,
     )
 }
