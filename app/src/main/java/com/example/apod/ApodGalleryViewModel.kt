@@ -22,10 +22,10 @@ class ApodGalleryViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             apodRepository.refreshApods()
-            apodRepository.getDbApodsFlow().collect {
-                _dbApodsFlow.value = it.filter { apodDbModel ->
+            apodRepository.getDbApodsFlow().collect { apodDbModelList ->
+                _dbApodsFlow.value = apodDbModelList.filter { apodDbModel ->
                     apodDbModel.mediaType == "image"
-                }.toDomainModel()
+                }.map { it.toDomainModel() }
             }
         }
     }

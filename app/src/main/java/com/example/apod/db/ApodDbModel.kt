@@ -37,21 +37,7 @@ fun List<ApodDbModel>.toApiModel(): List<ApodApiModel> {
         ApodApiModel(
             title = it.title,
             date = it.date,
-            copyright = if(it.copyright == "") null else it.copyright,
-            explanation = it.explanation,
-            url = it.url,
-            mediaType = it.mediaType,
-        )
-    }
-}
-
-fun List<ApodDbModel>.toDomainModel(): List<ApodDomainModel> {
-    return map {
-        ApodDomainModel(
-            id = it.id,
-            title = it.title,
-            date = it.date,
-            copyright = it.copyright,
+            copyright = if (it.copyright == "") null else it.copyright,
             explanation = it.explanation,
             url = it.url,
             mediaType = it.mediaType,
