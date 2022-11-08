@@ -2,11 +2,15 @@ package com.example.apod.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.apod.ApodDomainModel
 import com.example.apod.api.ApodApiModel
 
-@Entity(tableName = "apods")
+@Entity(
+    tableName = "apods",
+    indices = [Index(value = ["date"], unique = true)],
+)
 data class ApodDbModel(
 
     @PrimaryKey(autoGenerate = true)
