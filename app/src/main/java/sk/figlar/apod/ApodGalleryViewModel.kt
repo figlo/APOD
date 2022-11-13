@@ -1,8 +1,8 @@
-package com.example.apod
+package sk.figlar.apod
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.apod.db.toDomainModel
+import sk.figlar.apod.db.toDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

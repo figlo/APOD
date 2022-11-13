@@ -1,4 +1,4 @@
-package com.example.apod
+package sk.figlar.apod
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

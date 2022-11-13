@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/apodGalleryFragment"
-        android:name="com.example.apod.ApodGalleryFragment"
+        android:name="sk.figlar.apod.ApodGalleryFragment"
         android:label="@string/apod_label"
         tools:layout="@layout/fragment_apod_gallery">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/apodDetailFragment"
-        android:name="com.example.apod.ApodDetailFragment"
+        android:name="sk.figlar.apod.ApodDetailFragment"
         android:label="@string/apod_label"
         tools:layout="@layout/fragment_apod_detail">
         <argument

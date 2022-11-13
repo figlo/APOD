@@ -1,9 +1,9 @@
-package com.example.apod.di
+package sk.figlar.apod.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.apod.db.ApodDao
-import com.example.apod.db.ApodDb
+import sk.figlar.apod.db.ApodDao
+import sk.figlar.apod.db.ApodDb
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

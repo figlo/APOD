@@ -1,4 +1,4 @@
-package com.example.apod
+package sk.figlar.apod
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import coil.load
-import com.example.apod.databinding.FragmentApodDetailBinding
+import sk.figlar.apod.databinding.FragmentApodDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

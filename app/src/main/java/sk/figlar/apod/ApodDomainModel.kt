@@ -1,4 +1,4 @@
-package com.example.apod
+package sk.figlar.apod
 
 data class ApodDomainModel(
     val id: Long,

@@ -1,6 +1,6 @@
-package com.example.apod.api
+package sk.figlar.apod.api
 
-import com.example.apod.db.ApodDbModel
+import sk.figlar.apod.db.ApodDbModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

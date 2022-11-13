@@ -1,4 +1,4 @@
-package com.example.apod
+package sk.figlar.apod
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

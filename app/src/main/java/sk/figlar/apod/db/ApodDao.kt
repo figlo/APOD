@@ -1,4 +1,4 @@
-package com.example.apod.db
+package sk.figlar.apod.db
 
 import androidx.room.Dao
 import androidx.room.Insert

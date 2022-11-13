@@ -1,4 +1,4 @@
-package com.example.apod.api
+package sk.figlar.apod.api
 
 import retrofit2.http.GET
 

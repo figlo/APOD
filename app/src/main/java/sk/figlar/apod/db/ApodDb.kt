@@ -1,4 +1,4 @@
-package com.example.apod.db
+package sk.figlar.apod.db
 
 import androidx.room.AutoMigration
 import androidx.room.Database

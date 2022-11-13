@@ -1,4 +1,4 @@
-package com.example.apod
+package sk.figlar.apod
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.WindowMetricsCalculator
-import com.example.apod.databinding.FragmentApodGalleryBinding
+import sk.figlar.apod.databinding.FragmentApodGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,9 +51,12 @@ class ApodGalleryFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.dbApodsFlow.collect { items ->
-                    binding.apodGrid.adapter = ApodListAdapter(items, itemWidth) { apodId ->
+                    val adapter = ApodListAdapter(items, itemWidth) { apodId ->
                         findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))
+                    }.also {
+                        it.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                     }
+                    binding.apodGrid.adapter = adapter
                 }
             }
         }

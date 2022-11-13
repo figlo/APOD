@@ -1,10 +1,10 @@
-package com.example.apod
+package sk.figlar.apod
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.apod.databinding.ListItemGalleryBinding
+import sk.figlar.apod.databinding.ListItemGalleryBinding
 
 class ApodViewHolder(
     private val binding: ListItemGalleryBinding,

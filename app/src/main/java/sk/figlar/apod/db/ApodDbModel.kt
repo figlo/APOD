@@ -1,11 +1,11 @@
-package com.example.apod.db
+package sk.figlar.apod.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.apod.ApodDomainModel
-import com.example.apod.api.ApodApiModel
+import sk.figlar.apod.ApodDomainModel
+import sk.figlar.apod.api.ApodApiModel
 
 @Entity(
     tableName = "apods",

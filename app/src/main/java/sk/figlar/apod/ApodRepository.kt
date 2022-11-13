@@ -1,10 +1,10 @@
-package com.example.apod
+package sk.figlar.apod
 
-import com.example.apod.api.ApodApi
-import com.example.apod.api.toDbModel
-import com.example.apod.db.ApodDao
-import com.example.apod.db.ApodDbModel
-import com.example.apod.db.toApiModel
+import sk.figlar.apod.api.ApodApi
+import sk.figlar.apod.api.toDbModel
+import sk.figlar.apod.db.ApodDao
+import sk.figlar.apod.db.ApodDbModel
+import sk.figlar.apod.db.toApiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import retrofit2.Retrofit
