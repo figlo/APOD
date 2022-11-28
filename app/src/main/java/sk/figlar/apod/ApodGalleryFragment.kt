@@ -50,6 +50,7 @@ class ApodGalleryFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.refreshApods()
                 viewModel.dbApodsFlow.collect { items ->
                     val adapter = ApodListAdapter(items, itemWidth) { apodId ->
                         findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))

@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ApodGalleryViewModel @Inject constructor(
-    apodRepository: ApodRepository,
+    private val apodRepository: ApodRepository,
 ) : ViewModel() {
 
     private var _dbApodsFlow: MutableStateFlow<List<ApodDomainModel>> = MutableStateFlow(emptyList())
@@ -21,12 +21,17 @@ class ApodGalleryViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            apodRepository.refreshApods()
             apodRepository.getDbApodsFlow().collect { apodDbModelList ->
                 _dbApodsFlow.value = apodDbModelList.filter { apodDbModel ->
                     apodDbModel.mediaType == "image"
                 }.map { it.toDomainModel() }
             }
+        }
+    }
+
+    fun refreshApods() {
+        viewModelScope.launch {
+            apodRepository.refreshApods()
         }
     }
 }
