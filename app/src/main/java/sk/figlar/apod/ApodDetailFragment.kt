@@ -34,7 +34,7 @@ class ApodDetailFragment : Fragment() {
     ): View {
         viewModel.apodId = args.apodId
 
-        _binding = FragmentApodDetailBinding.inflate(inflater)
+        _binding = FragmentApodDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

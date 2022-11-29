@@ -32,7 +32,7 @@ class ApodGalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentApodGalleryBinding.inflate(inflater)
+        _binding = FragmentApodGalleryBinding.inflate(inflater, container, false)
         binding.apodGrid.layoutManager = GridLayoutManager(context, 3)
         return binding.root
     }
