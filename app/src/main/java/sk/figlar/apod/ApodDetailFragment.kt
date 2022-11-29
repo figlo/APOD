@@ -42,7 +42,7 @@ class ApodDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.apod.collect { apodDbModel ->
                     apodDbModel?.let {
                         binding.apodImage.load(it.url)
