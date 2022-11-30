@@ -9,7 +9,9 @@ import sk.figlar.apod.db.ApodDbModel
 import sk.figlar.apod.db.toApiModel
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ApodRepository @Inject constructor(
     private val dao: ApodDao,
     private val apodApi: ApodApi,
