@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import coil.load
 import sk.figlar.apod.databinding.FragmentApodDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,14 +38,23 @@ class ApodDetailFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.apod.collect { apodDomainModel ->
-                    apodDomainModel?.let {
-                        binding.apodImage.load(it.url)
-                        binding.apodTitle.text = getString(R.string.apod_title_date, it.title, it.date, it.copyright)
-                        binding.apodExplanation.text = it.explanation
-                    }
+                viewModel.apod.collect { apod ->
+                    apod?.let { updateUi(it) }
                 }
             }
+        }
+    }
+
+    private fun updateUi(apod: ApodDomainModel) {
+        binding.apply {
+            apodImage.load(apod.url)
+            apodTitle.text = getString(
+                R.string.apod_title_date,
+                apod.title,
+                apod.date,
+                apod.copyright
+            )
+            apodExplanation.text = apod.explanation
         }
     }
 
