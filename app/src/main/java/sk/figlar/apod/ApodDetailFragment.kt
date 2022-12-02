@@ -25,15 +25,11 @@ class ApodDetailFragment : Fragment() {
 
     private val viewModel: ApodDetailViewModel by viewModels()
 
-    private val args: ApodDetailFragmentArgs by navArgs()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.apodId = args.apodId
-
         _binding = FragmentApodDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
