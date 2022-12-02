@@ -16,7 +16,7 @@ class ApodDetailViewModel @Inject constructor(
     apodRepository: ApodRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    var apodId: Long = savedStateHandle["apodId"]!!        // TODO
+    var apodId: Long = savedStateHandle["apodId"] ?: -1
 
     private val _apod: MutableStateFlow<ApodDomainModel?> = MutableStateFlow(null)
     val apod: StateFlow<ApodDomainModel?>
