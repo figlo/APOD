@@ -23,7 +23,7 @@ class ApodViewHolder(
 }
 
 class ApodListAdapter(
-    private val apodApiModels: List<ApodDomainModel>,
+    private val apods: List<ApodDomainModel>,
     private val itemWidth: Int,
     private val onItemClicked: (apodId: Long) -> Unit,
 ) : RecyclerView.Adapter<ApodViewHolder>() {
@@ -37,9 +37,9 @@ class ApodListAdapter(
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
-        val item = apodApiModels[position]
+        val item = apods[position]
         holder.bind(item, onItemClicked)
     }
 
-    override fun getItemCount() = apodApiModels.size
+    override fun getItemCount() = apods.size
 }

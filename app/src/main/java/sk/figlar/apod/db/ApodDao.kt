@@ -13,8 +13,8 @@ interface ApodDao {
     suspend fun insertAll(apods: List<ApodDbModel>)
 
     @Query("SELECT * FROM apods ORDER BY date DESC")
-    fun getDbApodsFlow(): Flow<List<ApodDbModel>>
+    fun getApodDbModelsFlow(): Flow<List<ApodDbModel>>
 
     @Query("SELECT * FROM apods WHERE id=:id")
-    suspend fun getDbApod(id: Long): ApodDbModel?
+    suspend fun getApodDbModel(id: Long): ApodDbModel?
 }

@@ -51,8 +51,8 @@ class ApodGalleryFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.refreshApods()
-                viewModel.dbApodsFlow.collect { items ->
-                    val adapter = ApodListAdapter(items, itemWidth) { apodId ->
+                viewModel.apodsFlow.collect { apods ->
+                    val adapter = ApodListAdapter(apods, itemWidth) { apodId ->
                         findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))
                     }.also {
                         it.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY

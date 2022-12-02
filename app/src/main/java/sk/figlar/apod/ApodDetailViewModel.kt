@@ -3,7 +3,6 @@ package sk.figlar.apod
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import sk.figlar.apod.db.toDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +23,7 @@ class ApodDetailViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _apod.value = apodRepository.getApod(apodId)?.toDomainModel()
+            _apod.value = apodRepository.getApod(apodId)
         }
     }
 }

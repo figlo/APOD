@@ -43,8 +43,8 @@ class ApodDetailFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.apod.collect { apodDbModel ->
-                    apodDbModel?.let {
+                viewModel.apod.collect { apodDomainModel ->
+                    apodDomainModel?.let {
                         binding.apodImage.load(it.url)
                         binding.apodTitle.text = getString(R.string.apod_title_date, it.title, it.date, it.copyright)
                         binding.apodExplanation.text = it.explanation

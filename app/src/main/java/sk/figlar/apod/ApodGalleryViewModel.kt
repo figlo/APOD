@@ -15,14 +15,14 @@ class ApodGalleryViewModel @Inject constructor(
     private val apodRepository: ApodRepository,
 ) : ViewModel() {
 
-    private var _dbApodsFlow: MutableStateFlow<List<ApodDomainModel>> = MutableStateFlow(emptyList())
-    val dbApodsFlow: StateFlow<List<ApodDomainModel>>
-        get() = _dbApodsFlow.asStateFlow()
+    private var _apodsFlow: MutableStateFlow<List<ApodDomainModel>> = MutableStateFlow(emptyList())
+    val apodsFlow: StateFlow<List<ApodDomainModel>>
+        get() = _apodsFlow.asStateFlow()
 
     init {
         viewModelScope.launch {
-            apodRepository.getDbApodsFlow().collect { apodDbModelList ->
-                _dbApodsFlow.value = apodDbModelList.filter { apodDbModel ->
+            apodRepository.getApodDbModelsFlow().collect { apodDbModelList ->
+                _apodsFlow.value = apodDbModelList.filter { apodDbModel ->
                     apodDbModel.mediaType == "image"
                 }.map { it.toDomainModel() }
             }

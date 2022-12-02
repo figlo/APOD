@@ -9,5 +9,5 @@ interface ApodApi {
         "planetary/apod?api_key=$API_KEY" +
         "&start_date=2022-10-15"
     )
-    suspend fun getApiApods(): List<ApodApiModel>
+    suspend fun getApodApiModels(): List<ApodApiModel>
 }
