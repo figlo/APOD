@@ -29,9 +29,7 @@ class ApodGalleryViewModel @Inject constructor(
         }
     }
 
-    fun refreshApods() {
-        viewModelScope.launch {
-            apodRepository.refreshApods()
-        }
+    suspend fun refreshApods() {
+        apodRepository.refreshApods()
     }
 }
