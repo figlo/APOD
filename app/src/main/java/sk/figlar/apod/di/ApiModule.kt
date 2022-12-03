@@ -17,7 +17,7 @@ object ApiModule {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.nasa/gov/")
+        .baseUrl("https://api.nasa.gov/")
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
