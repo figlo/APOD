@@ -28,7 +28,7 @@ class ApodRepository @Inject constructor(
             val newApiApods = apiApods - dbApods.toApiModel().toSet()
             dao.insertAll(newApiApods.toDbModel())
         } catch (ex: Exception) {
-            Timber.e("Failed to fetch gallery items", ex)
+            Timber.e("Failed to fetch gallery items: $ex")
         }
     }
 }
