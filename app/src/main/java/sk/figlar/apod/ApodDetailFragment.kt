@@ -10,9 +10,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
-import sk.figlar.apod.databinding.FragmentApodDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import sk.figlar.apod.databinding.FragmentApodDetailBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 @AndroidEntryPoint
 class ApodDetailFragment : Fragment() {
@@ -48,10 +51,15 @@ class ApodDetailFragment : Fragment() {
     private fun updateUi(apod: ApodDomainModel) {
         binding.apply {
             apodImage.load(apod.url)
+
+            val localDate = LocalDate.parse(apod.date)
+            val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+            val formattedLocalDate = localDate.format(formatter)
+
             apodTitle.text = getString(
                 R.string.apod_title_date,
                 apod.title,
-                apod.date,
+                formattedLocalDate,
                 apod.copyright
             )
             apodExplanation.text = apod.explanation
