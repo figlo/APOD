@@ -18,7 +18,7 @@
         android:id="@+id/item_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:paddingTop="2dp"
         android:paddingBottom="16dp"
         android:textColor="@color/black"
