@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">APOD</string>
     <string name="apod_label">Astronomy Picture Of The Day</string>
-    <string name="apod_title_date">%1$s (%2$s) %3$s</string>
+    <string name="apod_title">%1$s (%2$s) %3$s</string>
+    <string name="apod_detail_title">%1$s\n%2$s</string>
 </resources>

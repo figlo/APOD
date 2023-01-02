@@ -23,7 +23,7 @@ class ApodViewHolder(
             val localDate = LocalDate.parse(apodDomainModel.date)
             val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
             val formattedLocalDate = localDate.format(formatter)
-            itemTextView.text = ("${apodDomainModel.title}\n($formattedLocalDate)")
+            itemTextView.text = Strings.get(R.string.apod_detail_title, apodDomainModel.title, formattedLocalDate)
 
             root.setOnClickListener { onItemClicked(apodDomainModel.id) }
         }

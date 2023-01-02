@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @HiltAndroidApp
-class ApplicationController: Application() {
+class ApplicationController : Application() {
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
@@ -23,5 +23,11 @@ class ApplicationController: Application() {
     override fun onCreate() {
         super.onCreate()
         delayedInit()
+        instance = this
+    }
+
+    companion object {
+        lateinit var instance: ApplicationController
+            private set
     }
 }

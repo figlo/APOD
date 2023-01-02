@@ -57,7 +57,7 @@ class ApodDetailFragment : Fragment() {
             val formattedLocalDate = localDate.format(formatter)
 
             apodTitle.text = getString(
-                R.string.apod_title_date,
+                R.string.apod_title,
                 apod.title,
                 formattedLocalDate,
                 apod.copyright
