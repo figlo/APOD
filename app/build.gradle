@@ -33,16 +33,17 @@ android {
         viewBinding true
     }
 
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
-        }
-    }
+//    testOptions {
+//        unitTests.all {
+//            useJUnitPlatform()
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    namespace 'sk.figlar.apod'
 }
 
 dependencies {
@@ -50,7 +51,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     // Support libraries
-    implementation "androidx.appcompat:appcompat:1.6.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
