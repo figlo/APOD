@@ -18,7 +18,9 @@ class ApodViewHolder(
         with(binding) {
             itemImageView.layoutParams.width = itemWidth
             itemImageView.layoutParams.height = itemWidth
-            itemImageView.load(apodDomainModel.url)
+            itemImageView.load(apodDomainModel.url) {
+                placeholder(R.drawable.placeholder_24dp)
+            }
 
             val localDate = LocalDate.parse(apodDomainModel.date)
             val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
