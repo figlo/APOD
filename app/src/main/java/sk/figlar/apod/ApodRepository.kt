@@ -39,7 +39,6 @@ class ApodRepository @Inject constructor(
         val currentDate = LocalDate.now(ZoneId.systemDefault())
         val dateFrom = currentDate.minusDays(14)
         val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        Timber.d(dateFrom.format(dateTimeFormatter))
         return dateFrom.format(dateTimeFormatter)
     }
 }
