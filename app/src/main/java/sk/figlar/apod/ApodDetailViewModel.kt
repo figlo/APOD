@@ -11,7 +11,8 @@ class ApodDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val apodId: Long = savedStateHandle["apodId"] ?: -1
+    private val navArgs = ApodDetailFragmentArgs.fromSavedStateHandle(savedStateHandle)
+    private val apodId = navArgs.apodId
 
     suspend fun getApod(): ApodDomainModel {
         return apodRepository.getApod(apodId)!!
