@@ -11,6 +11,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+private const val DB_NAME = "apod_db"
+
 @InstallIn(SingletonComponent::class)
 @Module
 object DbModule {
@@ -21,7 +23,7 @@ object DbModule {
         Room.databaseBuilder(
             appContext,
             ApodDb::class.java,
-            "apod_db"
+            DB_NAME,
         ).build()
 
     @Singleton
