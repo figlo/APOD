@@ -2,6 +2,8 @@ package sk.figlar.apod
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import sk.figlar.apod.databinding.ListItemGalleryBinding
@@ -36,7 +38,7 @@ class ApodListAdapter(
     private val apods: List<ApodDomainModel>,
     private val itemWidth: Int,
     private val onItemClicked: (apodId: Long) -> Unit,
-) : RecyclerView.Adapter<ApodViewHolder>() {
+) : ListAdapter<ApodDomainModel, ApodViewHolder>(ApodItemDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -52,4 +54,14 @@ class ApodListAdapter(
     }
 
     override fun getItemCount() = apods.size
+}
+
+class ApodItemDiffCallback : DiffUtil.ItemCallback<ApodDomainModel>() {
+    override fun areItemsTheSame(oldItem: ApodDomainModel, newItem: ApodDomainModel): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: ApodDomainModel, newItem: ApodDomainModel): Boolean {
+        return oldItem == newItem
+    }
 }

@@ -11,11 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 import androidx.window.layout.WindowMetricsCalculator
-import sk.figlar.apod.databinding.FragmentApodGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import sk.figlar.apod.databinding.FragmentApodGalleryBinding
 
 @AndroidEntryPoint
 class ApodGalleryFragment : Fragment() {
@@ -33,7 +33,10 @@ class ApodGalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentApodGalleryBinding.inflate(inflater, container, false)
-        binding.apodGrid.layoutManager = GridLayoutManager(context, 3)
+        with(binding.apodGrid) {
+            layoutManager = GridLayoutManager(context, 3)
+            setHasFixedSize(true)
+        }
         return binding.root
     }
 
@@ -54,9 +57,8 @@ class ApodGalleryFragment : Fragment() {
                 viewModel.apodsFlow.collect { apods ->
                     val adapter = ApodListAdapter(apods, itemWidth) { apodId ->
                         findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))
-                    }.also {
-                        it.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                     }
+                    adapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
                     binding.apodGrid.adapter = adapter
                 }
             }
