@@ -35,10 +35,9 @@ class ApodViewHolder(
 }
 
 class ApodListAdapter(
-    private val apods: List<ApodDomainModel>,
     private val itemWidth: Int,
     private val onItemClicked: (apodId: Long) -> Unit,
-) : ListAdapter<ApodDomainModel, ApodViewHolder>(ApodItemDiffCallback()) {
+) : ListAdapter<ApodDomainModel, ApodViewHolder>(ApodItemDiffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -49,14 +48,11 @@ class ApodListAdapter(
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
-        val item = apods[position]
-        holder.bind(item, onItemClicked)
+        holder.bind(getItem(position), onItemClicked)
     }
-
-    override fun getItemCount() = apods.size
 }
 
-class ApodItemDiffCallback : DiffUtil.ItemCallback<ApodDomainModel>() {
+object ApodItemDiffCallback : DiffUtil.ItemCallback<ApodDomainModel>() {
     override fun areItemsTheSame(oldItem: ApodDomainModel, newItem: ApodDomainModel): Boolean {
         return oldItem.id == newItem.id
     }

@@ -51,15 +51,17 @@ class ApodGalleryFragment : Fragment() {
         val displayWidth = bounds.width()
         val itemWidth: Int = displayWidth / 3
 
+        val adapter = ApodListAdapter(itemWidth) { apodId ->
+            findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))
+        }
+        adapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
+        binding.apodGrid.adapter = adapter
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.refreshApods()
                 viewModel.apodsFlow.collect { apods ->
-                    val adapter = ApodListAdapter(apods, itemWidth) { apodId ->
-                        findNavController().navigate(ApodGalleryFragmentDirections.actionApodGalleryFragmentToApodDetailFragment(apodId))
-                    }
-                    adapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
-                    binding.apodGrid.adapter = adapter
+                    adapter.submitList(apods)
                 }
             }
         }

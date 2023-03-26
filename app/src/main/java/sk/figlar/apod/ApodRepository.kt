@@ -1,7 +1,7 @@
 package sk.figlar.apod
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
 import sk.figlar.apod.api.ApodApi
 import sk.figlar.apod.api.toDbModel
 import sk.figlar.apod.db.ApodDao
@@ -27,7 +27,7 @@ class ApodRepository @Inject constructor(
     suspend fun refreshApods() {
         try {
             val apiApods = apodApi.getApodApiModels(getStartDate())
-            val dbApods = dao.getApodDbModelsFlow().first()
+            val dbApods = dao.getApodDbModelsFlow().last()
             val newApiApods = apiApods - dbApods.toApiModel().toSet()
             dao.insertAll(newApiApods.toDbModel())
         } catch (ex: Exception) {
