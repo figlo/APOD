@@ -1,7 +1,6 @@
 package sk.figlar.apod
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ class ApplicationController : Application() {
 
     private fun delayedInit() {
         applicationScope.launch {
-            if (BuildConfig.DEBUG) {
+            if (sk.figlar.apod.BuildConfig.DEBUG) {
                 Timber.plant(Timber.DebugTree())
             }
         }
