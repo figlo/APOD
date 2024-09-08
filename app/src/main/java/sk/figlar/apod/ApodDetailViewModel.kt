@@ -11,6 +11,8 @@ class ApodDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    // todo maybe get apod in init{}
+
     private val navArgs = ApodDetailFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val apodId = navArgs.apodId
 

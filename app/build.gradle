@@ -85,9 +85,6 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    ksp "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // Coil
     implementation 'io.coil-kt:coil:2.4.0'
