@@ -1,5 +1,7 @@
 package sk.figlar.apod.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +20,10 @@ object ApiModule {
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl("https://api.nasa.gov/")
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(
+            Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()))
         .build()
 
     @Singleton
