@@ -1,12 +1,12 @@
 buildscript {
-    ext.kotlin_version = "1.8.0"
-    ext.nav_version = '2.5.3'
-    ext.lifecycle_version = '2.6.1'
-    ext.hilt_version = '2.46.1'
-    ext.room_version = '2.5.1'
-    ext.retrofit_version = "2.9.0"
+    ext.kotlin_version = '2.0.21'
+    ext.nav_version = '2.8.3'
+    ext.lifecycle_version = '2.8.6'
+    ext.hilt_version = '2.52'
+    ext.room_version = '2.6.1'
+    ext.retrofit_version = '2.11.0'
     ext.moshi_version = '1.15.0'
-    ext.ksp_version = "1.8.0-1.0.9"
+    ext.ksp_version = '2.0.21-1.0.26'
     ext.kotest_version = '5.9.1'
 
     repositories {
@@ -15,12 +15,16 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.0'
+        classpath 'com.android.tools.build:gradle:8.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt_version")
     }
+}
+
+plugins {
+    id 'com.google.devtools.ksp'  version "$ksp_version" apply false
 }
 
 allprojects {
@@ -29,6 +33,8 @@ allprojects {
         mavenCentral()
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
