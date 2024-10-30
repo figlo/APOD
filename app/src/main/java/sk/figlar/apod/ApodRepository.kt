@@ -37,7 +37,7 @@ class ApodRepository @Inject constructor(
 
     private fun getStartDate(): String {
         val currentDate = LocalDate.now(ZoneId.systemDefault())
-        val dateFrom = currentDate.minusDays(14)
+        val dateFrom = currentDate.minusDays(15)
         val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         return dateFrom.format(dateTimeFormatter)
     }

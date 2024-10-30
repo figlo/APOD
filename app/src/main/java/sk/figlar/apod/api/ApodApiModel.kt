@@ -1,8 +1,8 @@
 package sk.figlar.apod.api
 
-import sk.figlar.apod.db.ApodDbModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import sk.figlar.apod.db.ApodDbModel
 
 @JsonClass(generateAdapter = true)
 data class ApodApiModel(
@@ -10,7 +10,7 @@ data class ApodApiModel(
     val date: String,
     val copyright: String?,
     val explanation: String,
-    val url: String,
+    val url: String?,
     @Json(name = "media_type") val mediaType: String,
 )
 
@@ -21,7 +21,7 @@ fun List<ApodApiModel>.toDbModel(): List<ApodDbModel> {
             date = it.date,
             copyright = it.copyright ?: "",
             explanation = it.explanation,
-            url = it.url,
+            url = it.url ?: "",
             mediaType = it.mediaType,
         )
     }

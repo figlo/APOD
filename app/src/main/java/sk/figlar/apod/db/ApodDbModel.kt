@@ -29,7 +29,7 @@ data class ApodDbModel(
     @ColumnInfo(name = "explanation")
     val explanation: String = "",
 
-    @ColumnInfo(name = "url")
+    @ColumnInfo(name = "url", defaultValue = "")
     val url: String = "",
 
     @ColumnInfo(name = "media_type")
@@ -43,7 +43,7 @@ fun List<ApodDbModel>.toApiModel(): List<ApodApiModel> {
             date = it.date,
             copyright = if (it.copyright == "") null else it.copyright,
             explanation = it.explanation,
-            url = it.url,
+            url = if ( it.url == "") null else it.url,
             mediaType = it.mediaType,
         )
     }
